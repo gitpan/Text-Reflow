@@ -30,7 +30,7 @@ our @EXPORT = qw(
 	
 );
 
-$Text::Reflow::VERSION = "1.04";
+$Text::Reflow::VERSION = "1.05";
 
 bootstrap Text::Reflow $Text::Reflow::VERSION;
 
@@ -231,7 +231,10 @@ sub reflow_file($$@) {
   local(*FROM, *TO);
 
   if ($from_a_handle) {
-    *FROM = *$from{FILEHANDLE};
+    {
+      no warnings;
+      *FROM = *$from{FILEHANDLE};
+    }
   } else {
     $from = "./$from" if $from =~ /^\s/s;
     open(FROM, "< $from\0") or croak "Cannot read `$from': $!";
@@ -240,7 +243,10 @@ sub reflow_file($$@) {
   }
 
   if ($to_a_handle) {
-    *TO = *$to{FILEHANDLE};
+    {
+      no warnings;
+      *TO = *$to{FILEHANDLE};
+    }
   } else {
     $to = "./$to" if $to =~ /^\s/s;
     open(TO,"> $to\0") or croak "Cannot write to `$to': $!";

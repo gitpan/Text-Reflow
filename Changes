@@ -13,3 +13,5 @@ Revision history for Perl extension Text::Reflow.
 1.04  Mon Sep 10 12:09:47 2001
 	- Don't clobber @optimum array passed as an array ref.
 	- Fixed bug with duplicate output for noreflow lines
+1.05  Thu Oct 23 16:59:39 2003
+	- Added "no warnings" in two places (*glob{FILEHANDLE} is deprecated)
