@@ -1,4 +1,4 @@
-Revision history for Perl extension Reflow.
+Revision history for Perl extension Text::Reflow.
 
 0.01  Fri Apr  7 11:03:39 2000
 	- original version
@@ -6,5 +6,7 @@ Revision history for Perl extension Reflow.
 	- Free the malloc-ed memory!
 0.03  Fri Apr  7 17:32:01 2000
 	- Implemented an improved module interface.
+1.00   Sun Sep 24 10:40:16 2000
+	- CPAN Release
 
 

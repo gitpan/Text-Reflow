@@ -29,7 +29,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw(
 	
 );
-our $VERSION = '0.03';
+our $VERSION = "1.00";
 
 bootstrap Text::Reflow $VERSION;
 
