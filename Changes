@@ -6,7 +6,7 @@ Revision history for Perl extension Text::Reflow.
 	- Free the malloc-ed memory!
 0.03  Fri Apr  7 17:32:01 2000
 	- Implemented an improved module interface.
-1.00   Sun Sep 24 10:40:16 2000
+1.00  Sun Sep 24 10:40:16 2000
 	- CPAN Release
-
-
+1.03  Thu Mar 15 11:53:45 2001
+	- Fix bug with endien differences.

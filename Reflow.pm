@@ -29,9 +29,10 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw(
 	
 );
-our $VERSION = "1.00";
 
-bootstrap Text::Reflow $VERSION;
+$Text::Reflow::VERSION = "1.03";
+
+bootstrap Text::Reflow $Text::Reflow::VERSION;
 
 # Preloaded methods go here.
 
@@ -47,10 +48,10 @@ sub _reflow_trial($$$$$$$$$$) {
   my ($lastbreak, @linkbreak);
   my ($j, $k, $interval, $penalty, @totalpenalty, $bestsofar);
   my (@best_linkbreak, $best_lastbreak, $opt);
-  my @optimum	= unpack("i*", pack("H*", $optimum));
-  my @word_len	= unpack("i*", pack("H*", $word_len));
-  my @space_len	= unpack("i*", pack("H*", $space_len));
-  my @extra	= unpack("i*", pack("H*", $extra));
+  my @optimum	= unpack("N*", pack("H*", $optimum));
+  my @word_len	= unpack("N*", pack("H*", $word_len));
+  my @space_len	= unpack("N*", pack("H*", $space_len));
+  my @extra	= unpack("N*", pack("H*", $extra));
   my $best = $penaltylimit * 21;
   foreach $opt (@optimum) {
     @linkbreak = ();
@@ -100,7 +101,7 @@ sub _reflow_trial($$$$$$$$$$) {
     }
   } # Next $opt
   # Return the best breaks:
-  $result = unpack("H*", pack("i*", ($best_lastbreak, @best_linkbreak)));
+  $result = unpack("H*", pack("N*", ($best_lastbreak, @best_linkbreak)));
   return($result);
 }
 
@@ -259,9 +260,12 @@ sub reflow_file($$@) {
 sub reflow_string($@) {
   my ($input, @opts) = @_;
   local $IO_Files = 0;		# We are reading/writing arrays
-  # Create the array from the string, keep trailing empty lines:
-  chomp($input);
-  local @from = map { "$_\n" } split(/\n/, $input, -1);
+  # Create the array from the string, keep trailing empty lines.
+  # We split on newlines and then restore them, being careful
+  # not to add an extra newline at the end:
+  local @from = split(/\n/, $input, -1);
+  pop(@from) if ($from[$#from] eq "");
+  @from = map { "$_\n" } @from;
   local @to = ();
   process_opts(@opts);
   reflow();
@@ -500,14 +504,15 @@ sub reflow_para {
   $linkbreak[$wordcount] = 0;
   # Create space for the result:
   my $result = " " x (($wordcount + 2) * 8);
-  $result = reflow_trial(unpack("H*", pack("i*", @$optimum)),
-			  $maximum, $wordcount,
-			  $penaltylimit, $semantic, $shortlast,
-			  unpack("H*", pack("i*", @word_len)),
-			  unpack("H*", pack("i*", @space_len)),
-			  unpack("H*", pack("i*", @extra)),
-			  $result);
-  @linkbreak = unpack("i*", pack("H*", $result));
+  $result = reflow_trial(unpack("H*", pack("N*", @$optimum)),
+			 $maximum, $wordcount,
+			 $penaltylimit, $semantic, $shortlast,
+			 unpack("H*", pack("N*", @word_len)),
+			 unpack("H*", pack("N*", @space_len)),
+			 unpack("H*", pack("N*", @extra)),
+			 $result);
+  @linkbreak = unpack("N*", pack("H*", $result));
+  @linkbreak = map { $_ + 0 } @linkbreak;
   $lastbreak = shift(@linkbreak);
   compute_output();
   grep (s/\377/ /g, @output);
