@@ -30,7 +30,7 @@ our @EXPORT = qw(
 	
 );
 
-$Text::Reflow::VERSION = "1.03";
+$Text::Reflow::VERSION = "1.04";
 
 bootstrap Text::Reflow $Text::Reflow::VERSION;
 
@@ -326,7 +326,7 @@ sub process_opts(@) {
   if ($indent2 ne "") {
     push(@save_opts, "optimum", $optimum, "maximum", $maximum);
     $maximum -= length($indent2);
-    map { $_ -= length($indent2) } @$optimum;
+    $optimum = [map { $_ - length($indent2) } @$optimum];
   }
 }
 
@@ -409,6 +409,7 @@ sub reflow() {
 	# current line is a paragraph break:
 	reflow_para();
 	print_lines($indent1 . $line);
+        next;
       } elsif ($line =~ /^($pin|\t).*\S/) {
 	# current line may be poetry, check next line:
 	$last = $line;

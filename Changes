@@ -10,3 +10,6 @@ Revision history for Perl extension Text::Reflow.
 	- CPAN Release
 1.03  Thu Mar 15 11:53:45 2001
 	- Fix bug with endien differences.
+1.04  Mon Sep 10 12:09:47 2001
+	- Don't clobber @optimum array passed as an array ref.
+	- Fixed bug with duplicate output for noreflow lines

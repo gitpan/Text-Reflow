@@ -1,6 +1,7 @@
 Changes
 MANIFEST
 Makefile.PL
+README
 Reflow.pm
 Reflow.xs
 reflow
