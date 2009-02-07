@@ -30,7 +30,7 @@ our @EXPORT = qw(
 	
 );
 
-$Text::Reflow::VERSION = "1.05";
+$Text::Reflow::VERSION = "1.06";
 
 bootstrap Text::Reflow $Text::Reflow::VERSION;
 
@@ -407,9 +407,9 @@ sub reflow() {
 	process($line);
       }
     }
-  
+
   } else {
-  
+
     while (defined($line = get_line())) {
       if (($noreflow ne "") && ($line =~ /$noreflow/)) {
 	# current line is a paragraph break:
@@ -519,7 +519,8 @@ sub reflow_para {
 			 unpack("H*", pack("N*", @extra)),
 			 $result);
   @linkbreak = unpack("N*", pack("H*", $result));
-  @linkbreak = map { $_ + 0 } @linkbreak;
+  # Convert @linkbreak from unsigned to signed:
+  @linkbreak = map { $_ > 0xF0000000 ? -((0xFFFFFFFF - $_) + 1) : $_ + 0 } @linkbreak;
   $lastbreak = shift(@linkbreak);
   compute_output();
   grep (s/\377/ /g, @output);
