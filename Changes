@@ -17,4 +17,6 @@ Revision history for Perl extension Text::Reflow.
 	- Added "no warnings" in two places (*glob{FILEHANDLE} is deprecated)
 1.06  Sat Feb  7 14:18:17 2009
 	- Fixed a bug which caused looping on 64 bit machines.
+1.07  Thu May 21 14:21:22 BST 2009
+	- Added GPL license notice to Reflow.pm
 

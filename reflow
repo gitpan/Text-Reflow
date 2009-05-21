@@ -1,9 +1,9 @@
 #!/usr/local/bin/perl -w
 # Version 7.0
 # Original script written by Michael Larsen, larsen@edu.upenn.math 
-# Modified by Martin Ward, Martin.Ward@uk.ac.durham
+# Modified by Martin Ward, martin@gkc.org.uk
 # Copyright 1994 Michael Larsen and Martin Ward
-# Email: Martin.Ward@durham.ac.uk
+# Email: martin@gkc.org.uk
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
