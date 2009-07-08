@@ -17,8 +17,9 @@ our @ISA = qw(Exporter DynaLoader);
 # Email: martin@gkc.org.uk
 #
 # This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
+# it under the terms of either the Artistic License or
+# the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
 # (at your option) any later version.
 #
 # This program is distributed in the hope that it will be useful,
@@ -26,9 +27,6 @@ our @ISA = qw(Exporter DynaLoader);
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # Items to export into callers namespace by default. Note: do not export
 # names by default without a very good reason. Use EXPORT_OK instead.
@@ -37,6 +35,7 @@ our @ISA = qw(Exporter DynaLoader);
 # This allows declaration	use Text::Reflow ':all';
 # If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
 # will save memory.
+
 our %EXPORT_TAGS = ( 'all' => [ qw(
 	reflow_file
 	reflow_string
@@ -49,7 +48,7 @@ our @EXPORT = qw(
 	
 );
 
-$Text::Reflow::VERSION = "1.07";
+$Text::Reflow::VERSION = "1.08";
 
 bootstrap Text::Reflow $Text::Reflow::VERSION;
 

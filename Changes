@@ -19,4 +19,7 @@ Revision history for Perl extension Text::Reflow.
 	- Fixed a bug which caused looping on 64 bit machines.
 1.07  Thu May 21 14:21:22 BST 2009
 	- Added GPL license notice to Reflow.pm
+1.08  Wed Jul  8 12:39:32 BST 2009
+	- Added 'LICENCE' => 'Perl' to Makefile.PL
+
 
