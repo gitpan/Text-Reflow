@@ -48,7 +48,7 @@ our @EXPORT = qw(
 	
 );
 
-$Text::Reflow::VERSION = "1.08";
+$Text::Reflow::VERSION = "1.09";
 
 bootstrap Text::Reflow $Text::Reflow::VERSION;
 

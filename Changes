@@ -21,5 +21,6 @@ Revision history for Perl extension Text::Reflow.
 	- Added GPL license notice to Reflow.pm
 1.08  Wed Jul  8 12:39:32 BST 2009
 	- Added 'LICENCE' => 'Perl' to Makefile.PL
-
+1.09  Mon Jul 13 09:40:46 BST 2009
+	- Fixed a typo: LICENCE -> LICENSE!
 
